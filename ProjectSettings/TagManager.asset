@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Collision
+  - Ground
+  - Enemy
+  - item
+  - itemOff
+  - player
+  - utility1
+  - utility2
+  - special1
+  - special2
+  - special3
+  - weapon
+  - lockOn
+  - agility
+  - fortitude
+  - strength
+  - intellect
+  - volition
+  - npc
+  - enemyItem
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - RetroScreen
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: RetroScreen
+    uniqueID: 438665725
+    locked: 0

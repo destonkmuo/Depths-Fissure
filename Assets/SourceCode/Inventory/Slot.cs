@@ -61,10 +61,12 @@ public class Slot : MonoBehaviour, IPointerClickHandler {
   {
     if (item != null && type == "weapon" && IS.weaponSlotUsed == false) {
       item.tag = "itemOff";
+      // Allocates Specific Values to the Slot 
       weaponSlot.GetComponent<HotBarScript>().itemWP = item;
       weaponSlot.GetComponent<HotBarScript>().typeWP = type;
       weaponSlot.GetComponent<HotBarScript>().IDWP = ID;
       weaponSlot.GetComponent<HotBarScript>().descriptionWP = description;
+      // Allocating Item to Specific Body Parts and Other configuration
       item.transform.parent = PlayersHand.transform;
       item.GetComponent<Rigidbody>().isKinematic = true;
       GameObject itemCopy = Instantiate(item);

@@ -13,16 +13,19 @@ public class EnemyAI : MonoBehaviour
     public HealthDisplay HD;
     public Animator anim;
     public bool Swing = false;
-    public float _time = 1f;
-    public float health = 100f;
-    public float maxHealth = 100f;
+    public float _time = 2f;
+    [System.NonSerialized] public float health = 100f;
+    [System.NonSerialized] public float maxHealth = 100f;
     public Slider slider;
     public GameObject Chest;
+    public ExpDisplay ED;
+    public float expDropAmount;
 
     // Start is called before the first frame update
     void Start()
     {
         HD = HD.GetComponent<HealthDisplay>();
+        ED = ED.GetComponent<ExpDisplay>();
     }
 
     // Update is called once per frame
@@ -31,6 +34,7 @@ public class EnemyAI : MonoBehaviour
         if(health <= 0) {
             GameObject chest = Instantiate(Chest, new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);
             chest.SetActive(true);
+            ED.currentExp += expDropAmount;
             Destroy(gameObject);
         }
         slider.value = health/maxHealth;
@@ -48,7 +52,7 @@ public class EnemyAI : MonoBehaviour
             anim.SetBool("isIdle", true);
             anim.SetBool("isSwing", false);
         }
-        if(Distance < 3f) {
+        if(Distance < 2f) {
         if(_time > 0) {
              isAngered = false;
             _time -= Time.deltaTime;
@@ -57,7 +61,7 @@ public class EnemyAI : MonoBehaviour
             _time = 0;
         }
         if(_time == 0) {
-            _time = 1f;
+            _time = 2f;
             Swing = true;
             anim.SetBool("isSwing", true);
             anim.SetBool("isRunning", true);

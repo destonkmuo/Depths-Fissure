@@ -7,7 +7,7 @@ public class ExpDisplay : MonoBehaviour
 {
 
     private float expMax = 100;
-    private float currentExp = 0;
+    public float currentExp = 0;
     public Slider slider;
     public float level = 0;
     public Text text;

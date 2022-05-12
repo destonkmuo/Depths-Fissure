@@ -49,7 +49,6 @@ public class playerAnimations : MonoBehaviour
             Swing = true;
             _time = .85f;
         } else if(Hand.transform.childCount > 0 && !isWalking && Swing && _time == 0f) {
-            Debug.Log("d");
             anim.SetBool("isSlash", false);
             anim.SetBool("Idle", true);
             Hand.transform.GetChild(0).transform.GetComponent<BoxCollider>().enabled = false;
@@ -111,7 +110,7 @@ public class playerAnimations : MonoBehaviour
             }
         if(HD.health == 0f) {
             anim.SetBool("onDeath", true);
-        } else if (HD.health == 1f) {
+        } else if (HD.health == HD.healthMax) {
             anim.SetBool("onDeath", false);
         }
     }

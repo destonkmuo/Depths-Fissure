@@ -12,22 +12,25 @@ public class Block : MonoBehaviour
     public AudioSource source;
     public AudioClip clip;
     public bool isBlockBroken = false;
-    public float blockAmount = 3;
-    public float originalBlockAmount = 3;
+    [System.NonSerialized] public float blockAmount = 10;
+    [System.NonSerialized] public float originalBlockAmount = 10;
     public float BlockInc;
     public float blockRegenTimer = .1f;
     public float ogblockRegenTimer = .1f;
     public PlayerController PS;
     public TraderDialogue TD;
+    public SkillsAndLevels SL;
     // Start is called before the first frame update
     void Start()
     {
+        SL = SL.GetComponent<SkillsAndLevels>();
         TD = TD.GetComponent<TraderDialogue>();
         PA = PA.GetComponent<playerAnimations>();
         PS = PS.GetComponent<PlayerController>();
     }
     void Update() 
     {
+        originalBlockAmount = 10f * Mathf.Floor(1 + SL.forVal * .15f);
         Color tmp = Crack.transform.GetComponent<Image>().color;
         tmp.a = BlockInc/originalBlockAmount;
         Crack.transform.GetComponent<Image>().color = tmp;

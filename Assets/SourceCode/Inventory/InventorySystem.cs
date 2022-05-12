@@ -28,7 +28,7 @@ public class InventorySystem : MonoBehaviour {
     void Start()
     {
         LeanTween.init(1000000);
-        allSlots = 35;
+        allSlots = 36;
         slot = new GameObject[allSlots];
 
         for (int i = 0; i < allSlots; i++) {
@@ -40,7 +40,7 @@ public class InventorySystem : MonoBehaviour {
         playerScript = playerScript.GetComponent<PlayerController>();
         cameraScript = cameraScript.GetComponent<CameraController>();
     }
-    private float limit = 5f;
+    private float limit = 3f;
     public float coolDown = .5f;
     public float cooldownTimer = .5f;
     void Update()
@@ -61,7 +61,7 @@ public class InventorySystem : MonoBehaviour {
             playerScript.movementEnable = false;
             Player.transform.rotation = Quaternion.Euler(0, -180, 0);
             mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
-            cameraScript.targetOffSet = new Vector3(-2.5f, 1.0f, -10);
+            cameraScript.targetOffSet = new Vector3(-1.8f, 1.0f, -10);
         }
 
         if (Input.GetKeyDown(KeyCode.I) && !inventoryEnabled) {

@@ -14,18 +14,24 @@ public class HealthDisplay : MonoBehaviour {
   public AudioClip clip;
   public AudioSource IntenseMusic;
   public VideoPlayer CalmMusic;
+  public SkillsAndLevels SL;
   // Start is called before the first frame update
   void Start() {
+    SL = SL.GetComponent<SkillsAndLevels>();
     PC = PC.GetComponent<PlayerController>();
    }
 
   // Update is called once per frame
+  [System.NonSerialized] public float health = 100f;
+  [System.NonSerialized] public float healthMax = 100f;
 
-  public float health = 100f;
-  public float healthMax = 100f;
   public float _time = 5;
   void Update()
   {
+    healthMax = 100f * Mathf.Floor(1 + SL.forVal * .15f);
+    if(health < .75f * healthMax && health > .1 * healthMax) {
+    health += .005f;
+    }
     if (health < 0) {
       health = 0;
     }
@@ -66,9 +72,9 @@ public class HealthDisplay : MonoBehaviour {
   void healthChecker()
   {
     float x = health/healthMax;
-    Debug.Log(health);
     HealthBarIndicator.transform.localScale = new Vector3(x, 1, 0);
     if (x <= .5f) {
+
       CalmMusic.SetDirectAudioVolume(0, 0f);
       IntenseMusic.volume = 1f;
       Blur.SetActive(true);
@@ -77,7 +83,7 @@ public class HealthDisplay : MonoBehaviour {
         healthTime -= Time.deltaTime;
       }
       if (healthTime > 0 && healthUp == true) {
-        MainCamera.transform.position = MainCamera.transform.position + new Vector3(.0025f / x, .0025f / x, 0);
+        MainCamera.transform.position = MainCamera.transform.position + new Vector3(.0015f / x, .0015f / x, 0);
       }
       if (healthTime < 0 && healthUp == true) {
         healthUp = false;
@@ -89,7 +95,7 @@ public class HealthDisplay : MonoBehaviour {
         healthTime -= Time.deltaTime;
       }
       if (healthTime > 0 && healthDown == true) {
-        MainCamera.transform.position = MainCamera.transform.position - new Vector3(.0025f / x, .0025f / x, 0);
+        MainCamera.transform.position = MainCamera.transform.position - new Vector3(.0015f / x, .0015f / x, 0);
       }
       if (healthTime < 0 && healthDown == true) {
         healthUp = true;

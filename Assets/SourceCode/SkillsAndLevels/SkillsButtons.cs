@@ -32,17 +32,5 @@ public class SkillsButtons : MonoBehaviour, IPointerClickHandler
                 SL.strVal += 1;
                 }
         }
-        if(transform.tag == "intellect") {
-            if(SL.SkillPoints > 0) { 
-                SL.SkillPoints -= 1; 
-                SL.inteVal += 1;
-                }
-        }
-        if(transform.tag == "volition") {
-            if(SL.SkillPoints > 0) { 
-                SL.SkillPoints -= 1; 
-                SL.voiVal += 1;
-                }
         }
     }
-}

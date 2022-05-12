@@ -20,9 +20,11 @@ public class PlayerController: MonoBehaviour {
     public float sprintSpeed = 1f;
     public Text text;
     public GameObject StaminaBar;
+    public SkillsAndLevels SL;
     void Start() {
         CameraFade.Out(0f);
         CameraFade.In(6f);
+        SL = SL.GetComponent<SkillsAndLevels>();
     }
 
     void Update() {
@@ -60,7 +62,10 @@ public class PlayerController: MonoBehaviour {
         Vector3 _movement = new Vector3(_horizontal, 0, _vertical);
 
         if (Input.GetKey(KeyCode.LeftShift) && StaminaBar.transform.localScale.x > 0) {
-            sprintSpeed = 2f;
+            sprintSpeed = 2f * 1 + SL.agiVal * .025f;
+            if(sprintSpeed > 10) {
+                sprintSpeed = 10;
+            }
             StaminaBar.transform.localScale = new Vector3(StaminaBar.transform.localScale.x - .001f, 1, 1); // Add agility buffs/debuffs here
 
         }
@@ -119,7 +124,7 @@ public class PlayerController: MonoBehaviour {
             Vector3 targetPosition = ray.GetPoint(rayLength);
             Vector3 targetDir = targetPosition - transform.position;
             targetDir.y = 0;
-            float step = 10 * Time.deltaTime;
+            float step = 25 * Time.deltaTime;
 
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
             Debug.DrawRay(transform.position, newDir, Color.red);
@@ -142,7 +147,7 @@ public class PlayerController: MonoBehaviour {
     private void OnTriggerExit(Collider other) {
         if (other.tag == "item") {
             text.transform.LeanMoveLocal(new Vector2(0, -700), 1.5f).setEaseOutQuart();
-            text.text = "PRESS E TO PICK UP";
+            text.text = "";
         }
     }
 }

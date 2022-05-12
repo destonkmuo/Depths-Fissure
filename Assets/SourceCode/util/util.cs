@@ -29,7 +29,7 @@ public class util : MonoBehaviour
             if(Player.transform.GetChild(5).transform.GetChild(0).transform == this.transform)
                 if(Input.GetKeyDown("5"))
                 {
-                    HD.health += .4f;
+                    HD.health += HD.healthMax * .35f;
                     UT1.transform.GetComponent<Image>().sprite = null;
                     UT1.transform.GetComponent<Image>().color = new Color32(15, 59, 49, 225);
                     IS.utility1SlotUsed = false;
@@ -42,7 +42,7 @@ public class util : MonoBehaviour
             if(Player.transform.GetChild(6).transform.GetChild(0).transform == this.transform)
                 if(Input.GetKeyDown("6"))
                 {
-                    HD.health += .4f;
+                    HD.health += HD.healthMax * .35f;
                     UT2.transform.GetComponent<Image>().sprite = null;
                     UT2.transform.GetComponent<Image>().color = new Color32(15, 59, 49, 225);
                     IS.utility2SlotUsed = false;

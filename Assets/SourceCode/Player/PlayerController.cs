@@ -79,8 +79,9 @@ public class PlayerController: MonoBehaviour {
         if (StaminaBar.transform.localScale.x < 0) {
             StaminaBar.transform.localScale = new Vector3(0, 1, 1);
         }
+        //player speed/walking/running
         transform.Translate(_movement * movementSpeed * Time.deltaTime * sprintSpeed, Space.World);
-
+        // based on user input it changes where the player model is looking
         if (Input.GetKey("w")) {
             Vector3 v3 = new Vector3(0,0,0);
             LeanTween.rotate(gameObject, v3, .15f);
@@ -118,6 +119,7 @@ public class PlayerController: MonoBehaviour {
     void HandleRotationInput() {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         Plane groundPlane = new Plane(Vector3.up, Vector3.zero);
+        //plane cast for ray
         float rayLength;
 
         if (groundPlane.Raycast(ray, out rayLength)) {
@@ -125,11 +127,13 @@ public class PlayerController: MonoBehaviour {
             Vector3 targetDir = targetPosition - transform.position;
             targetDir.y = 0;
             float step = 25 * Time.deltaTime;
+            // step is the drag between the character so the turn isn't harsh
 
             Vector3 newDir = Vector3.RotateTowards(transform.forward, targetDir, step, 0.0F);
             Debug.DrawRay(transform.position, newDir, Color.red);
 
             transform.rotation = Quaternion.LookRotation(newDir);
+            // model looks at the ray
 
             //transform.LookAt(new Vector3(targetPosition.x, transform.position.y, targetPosition.z));
         }

@@ -34,7 +34,7 @@ public class Block : MonoBehaviour
         Color tmp = Crack.transform.GetComponent<Image>().color;
         tmp.a = BlockInc/originalBlockAmount;
         Crack.transform.GetComponent<Image>().color = tmp;
-
+// Checks if Block has been Decreased by an Enemy to 0
         if(blockAmount == 0) {
             source.PlayOneShot(clip);
             isBlockBroken = true;
@@ -42,12 +42,14 @@ public class Block : MonoBehaviour
             BlockBroken.SetActive(true);
             blockAmount -= 1;
         }
+        // If Block Amount has == 0, it sets it to -1 so the blockAmount isnt increased from its elementary value
         if(blockAmount == -1) {
             blockRegenTimer -= Time.deltaTime;
         }
         if(blockRegenTimer < 0) {
             blockRegenTimer = 0;
         }
+        // Resets Block
         if(blockRegenTimer == 0) {
             blockAmount = originalBlockAmount;
             blockRegenTimer = ogblockRegenTimer;
@@ -62,22 +64,4 @@ public class Block : MonoBehaviour
         }
         
     }
-
-   /* public bool time(float time){
-        float _time = time;
-        bool isDone;
-        if(_time > 0) {
-            _time -= Time.deltaTime;
-        }
-        if(_time < 0) {
-            _time = 0;
-        }
-        if(_time == 0) {
-            isDone = true;
-        } else {
-            return false
-        }
-        return isDone;
-    }
-    */
 }

@@ -53,9 +53,10 @@ public class InventorySystem : MonoBehaviour {
 
     void ActivateInventory()
     {
+        //If user presses I, Open inventory
         if (Input.GetKeyDown(KeyCode.I) && limit == 0)
             inventoryEnabled = !inventoryEnabled;
-
+        //Locks Specific User input when in inventory
         if (Input.GetKeyDown(KeyCode.I) && inventoryEnabled) {
             playerScript.rotationEnable = false;
             playerScript.movementEnable = false;
@@ -63,13 +64,14 @@ public class InventorySystem : MonoBehaviour {
             mainCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
             cameraScript.targetOffSet = new Vector3(-1.8f, 1.0f, -10);
         }
-
+        //unlocking of previously stated  input when e is press again
         if (Input.GetKeyDown(KeyCode.I) && !inventoryEnabled) {
             playerScript.rotationEnable = true;
             playerScript.movementEnable = true;
             mainCamera.transform.rotation = Quaternion.Euler(20, 0, 0);
             cameraScript.targetOffSet = new Vector3(0, 10, -22);
         }
+        // Vanity of Other UI
         if (inventoryEnabled == true) {
             HealthBar.SetActive(false);
             inventory.transform.LeanMoveLocal(new Vector2(-440, 0), 1.5f).setEaseOutQuart();

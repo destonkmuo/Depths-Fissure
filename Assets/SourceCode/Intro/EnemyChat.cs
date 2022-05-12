@@ -96,7 +96,7 @@ public class EnemyChat : MonoBehaviour
             text.text = "HERE YOU CAN UPGRADE YOUR STATS";
         }
         if(textChatInt == 25) {
-            text.text = "NOW YOU MAY RETURN TO THE OVERWORLD AS A GLEANER... IF YOU DIE THREE TIMES YOU WILL BE SENT DOWN HERE";
+            text.text = "NOW YOU MAY RETURN TO THE OVERWORLD AS A GLEANER... ";
         }
         if(textChatInt == 25) {
             text.text = "GOOD LUCK ...";

@@ -14,8 +14,8 @@ public class EnemyAI : MonoBehaviour
     public Animator anim;
     public bool Swing = false;
     public float _time = 2f;
-    [System.NonSerialized] public float health = 100f;
-    [System.NonSerialized] public float maxHealth = 100f;
+    public float health;
+    public float maxHealth;
     public Slider slider;
     public GameObject Chest;
     public ExpDisplay ED;

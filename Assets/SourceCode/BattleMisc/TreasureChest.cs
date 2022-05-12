@@ -33,6 +33,7 @@ public class TreasureChest : MonoBehaviour
             cooldownTimer = 0;
         }
         if(cooldownTimer == 0) {
+        //Drop and Destroy Chest 
             rarityInterpreter();
             Destroy(this.gameObject);
             cooldownTimer = 3f;
@@ -41,7 +42,9 @@ public class TreasureChest : MonoBehaviour
 
     public void rarityInterpreter() {
         int rarity = Random.Range(0, 99);
+        //Creates a Random number from 0 - 99
         if(rarity < 1) {
+        //If rarity is 1% and so on it drops specific weapons
             int randomPickdrop = Random.Range(0, 3);
             if(randomPickdrop == 0) {
                 GameObject item = Instantiate(sword10, new Vector3 (transform.position.x, transform.position.y + 1, transform.position.z), Quaternion.identity);

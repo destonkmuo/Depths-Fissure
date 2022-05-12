@@ -71,10 +71,11 @@ public class HealthDisplay : MonoBehaviour {
   public GameObject Blur;
   void healthChecker()
   {
+    //Checks Health For specific values
     float x = health/healthMax;
     HealthBarIndicator.transform.localScale = new Vector3(x, 1, 0);
     if (x <= .5f) {
-
+//Applies music based on health
       CalmMusic.SetDirectAudioVolume(0, 0f);
       IntenseMusic.volume = 1f;
       Blur.SetActive(true);
@@ -82,6 +83,7 @@ public class HealthDisplay : MonoBehaviour {
       if (healthTime > 0 && healthUp == true) {
         healthTime -= Time.deltaTime;
       }
+      //shakes camera based on health
       if (healthTime > 0 && healthUp == true) {
         MainCamera.transform.position = MainCamera.transform.position + new Vector3(.0015f / x, .0015f / x, 0);
       }
@@ -102,6 +104,7 @@ public class HealthDisplay : MonoBehaviour {
         healthDown = false;
         healthTime = .05f;
       }
+      //adds blur based on health
     } else if (x > .5f) {
       CalmMusic.SetDirectAudioVolume(0, 1f);
       IntenseMusic.volume = 0f;
